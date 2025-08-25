@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natik - Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Martel:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <img src="assets/logo_natik.svg" alt="Natik Logo" class="logo" />
+        </div>
+
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="#que-es-natik">Que es Natik</a></li>
+            <li><a href="#para-anfitriones">Para Anfitriones</a></li>
+            <li><a href="#como-sumarte">Como sumarte</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-cta">
+          <a href="#hazte-anfitrion" class="cta-button">Hazte Anfitrion</a>
+        </div>
+
+        <!-- Mobile menu toggle -->
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-image">
+        <img
+          src="assets/hero_img.png"
+          alt="Natik Hero Image"
+          class="hero-img"
+        />
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-highlights">
+            <span class="highlight">ESTADÍAS CURADAS</span>
+            <span class="highlight">TURISMO RESPONSABLE</span>
+            <span class="highlight">ENFOQUE EN ANFITRIONES</span>
+          </div>
+          <h1 class="hero-title">
+            El hogar digital de los alojamientos de naturaleza
+          </h1>
+          <p class="hero-subtitle">
+            El marketplace para alojamientos de naturaleza con propósito
+            sustentable - bajo un mismo techo
+          </p>
+          <a href="#hazte-anfitrion" class="hero-cta-button">Hazte Anfitrion</a>
+        </div>
+        <div class="hero-support">
+          <p class="support-text">Apoyado por</p>
+          <img
+            src="assets/start-up_white.png"
+            alt="Start-up Logo"
+            class="support-logo"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features animate-fade-in">
+      <div class="features-container">
+        <div class="feature-card animate-slide-up">
+          <img
+            src="assets/icon_1.svg"
+            alt="Nicho que convierte"
+            class="feature-icon"
+          />
+          <div class="feature-content">
+            <h3 class="feature-title">NICHO QUE CONVIERTE</h3>
+            <p class="feature-subtitle">
+              Llegas a viajeros de naturaleza: menos ruido, mejor match
+            </p>
+          </div>
+        </div>
+        <div class="feature-card animate-slide-up">
+          <img src="assets/icon_2.svg" alt="Sello Natik" class="feature-icon" />
+          <div class="feature-content">
+            <h3 class="feature-title">SELLO NATIK</h3>
+            <p class="feature-subtitle">
+              Destaca tus prácticas sustentables y muéstralas en tu ficha.
+            </p>
+          </div>
+        </div>
+        <div class="feature-card animate-slide-up">
+          <img
+            src="assets/icon_3.svg"
+            alt="Control para el anfitrión"
+            class="feature-icon"
+          />
+          <div class="feature-content">
+            <h3 class="feature-title">CONTROL PARA EL ANFITRIÓN</h3>
+            <p class="feature-subtitle">
+              Tú defines precio, reglas y fechas; sin costos fijos por listar
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about animate-on-scroll">
+      <div class="about-container">
+        <h2 class="about-title">¿Qué es Natik?</h2>
+        <p class="about-subtitle">
+          Natik es un marketplace nicho para alojamientos en entornos naturales.
+          Diseñado para anfitriones que buscan más visibilidad y reservas de
+          calidad.
+        </p>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits animate-fade-in">
+      <div class="benefits-container">
+        <div class="benefit-card animate-slide-left">
+          <img
+            src="assets/sec2_icon3.svg"
+            alt="Reservas eficientes"
+            class="benefit-icon"
+          />
+          <div class="benefit-content">
+            <h3 class="benefit-title">Reservas eficientes</h3>
+            <p class="benefit-subtitle">
+              Solicitudes directas e integración con tus calendarios para evitar
+              dobles reservas
+            </p>
+          </div>
+        </div>
+        <div class="benefit-card animate-slide-up">
+          <img
+            src="assets/sec2_icon2.svg"
+            alt="Marketing compartido"
+            class="benefit-icon"
+          />
+          <div class="benefit-content">
+            <h3 class="benefit-title">Marketing compartido</h3>
+            <p class="benefit-subtitle">
+              Campañas en redes, contenidos editoriales y alianzas que
+              amplifican tu visibilidad y atraen tráfico calificado
+            </p>
+          </div>
+        </div>
+        <div class="benefit-card animate-slide-right">
+          <img
+            src="assets/sec2_icon1.svg"
+            alt="Curación con propósito"
+            class="benefit-icon"
+          />
+          <div class="benefit-content">
+            <h3 class="benefit-title">Curación con propósito</h3>
+            <p class="benefit-subtitle">
+              Admitimos propiedades que cuidan su entorno y ofrecen una
+              experiencia auténtica en entorno natural
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why animate-on-scroll">
+      <div class="why-container">
+        <h2 class="why-title">¿Por qué ser Anfitrión de Natik?</h2>
+        <p class="why-subtitle">
+          Si eso te suena conocido, Natik viene con la solución!
+        </p>
+      </div>
+    </section>
+
+    <!-- Problems Solutions Section -->
+    <section class="problems-solutions animate-fade-in">
+      <div class="problems-solutions-container">
+        <div class="problem-solution-card">
+          <img
+            src="assets/anf_sec_icon1.svg"
+            alt="Alojamiento se diluye"
+            class="ps-icon"
+          />
+          <div class="ps-content">
+            <div class="ps-problem-container">
+              <img src="assets/minus.svg" alt="Problem" class="ps-minus" />
+              <h3 class="ps-problem">
+                Tu alojamiento se diluye en plataformas masivas.
+              </h3>
+            </div>
+            <div class="ps-solution-container">
+              <img src="assets/check.svg" alt="Solution" class="ps-check" />
+              <p class="ps-solution">
+                Nicho de naturaleza con demanda segmentada; te mostramos a
+                quienes ya buscan domos, cabañas y glamping
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="problem-solution-card">
+          <img
+            src="assets/anf_sec_icon2.svg"
+            alt="Mensajes repetidos"
+            class="ps-icon"
+          />
+          <div class="ps-content">
+            <div class="ps-problem-container">
+              <img src="assets/minus.svg" alt="Problem" class="ps-minus" />
+              <h3 class="ps-problem">
+                Mensajes repetidos y gestión que consume horas
+              </h3>
+            </div>
+            <div class="ps-solution-container">
+              <img src="assets/check.svg" alt="Solution" class="ps-check" />
+              <p class="ps-solution">
+                Ficha clara con FAQs y políticas; solicitud o reserva
+                instantánea + plantillas de respuesta.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="problem-solution-card">
+          <img
+            src="assets/anf_sec_icon3.svg"
+            alt="Calendarios desordenados"
+            class="ps-icon"
+          />
+          <div class="ps-content">
+            <div class="ps-problem-container">
+              <img src="assets/minus.svg" alt="Problem" class="ps-minus" />
+              <h3 class="ps-problem">Calendarios desordenados y sobreventas</h3>
+            </div>
+            <div class="ps-solution-container">
+              <img src="assets/check.svg" alt="Solution" class="ps-check" />
+              <p class="ps-solution">
+                Integración por iCal y estados de reserva claros para mantener
+                tu disponibilidad al día
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="problem-solution-card">
+          <img
+            src="assets/anf_sec_icon4.svg"
+            alt="Comisiones y reglas confusas"
+            class="ps-icon"
+          />
+          <div class="ps-content">
+            <div class="ps-problem-container">
+              <img src="assets/minus.svg" alt="Problem" class="ps-minus" />
+              <h3 class="ps-problem">Comisiones y reglas confusas</h3>
+            </div>
+            <div class="ps-solution-container">
+              <img src="assets/check.svg" alt="Solution" class="ps-check" />
+              <p class="ps-solution">
+                Modelo claro por reserva; tú controlas precio, reglas y
+                calendario (sin costos fijos por listar)
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="problem-solution-card">
+          <img
+            src="assets/anf_sec_icon5.svg"
+            alt="Fotos que no venden"
+            class="ps-icon"
+          />
+          <div class="ps-content">
+            <div class="ps-problem-container">
+              <img src="assets/minus.svg" alt="Problem" class="ps-minus" />
+              <h3 class="ps-problem">Fotos que no venden</h3>
+            </div>
+            <div class="ps-solution-container">
+              <img src="assets/check.svg" alt="Solution" class="ps-check" />
+              <p class="ps-solution">
+                Acompañamiento editorial: guía rápida de fotos, highlights y
+                tarifa base para mejorar conversión.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="problem-solution-card">
+          <img
+            src="assets/anf_sec_icon6.svg"
+            alt="Cancelaciones y expectativas"
+            class="ps-icon"
+          />
+          <div class="ps-content">
+            <div class="ps-problem-container">
+              <img src="assets/minus.svg" alt="Problem" class="ps-minus" />
+              <h3 class="ps-problem">
+                Cancelaciones y expectativas mal calibradas.
+              </h3>
+            </div>
+            <div class="ps-solution-container">
+              <img src="assets/check.svg" alt="Solution" class="ps-check" />
+              <p class="ps-solution">
+                Sello Natik y foco en sostenibilidad para atraer huéspedes que
+                valoran el bajo impacto y descanso de calidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Join Section -->
+    <section class="how-to-join animate-on-scroll">
+      <div class="how-to-join-container">
+        <h2 class="htj-title">¿Cómo sumarte?</h2>
+        <p class="htj-subtitle">
+          Un proceso simple y guiado para dejar tu alojamiento listo para el
+          lanzamiento de la plataforma y empezar a recibir reservas
+        </p>
+
+        <div class="htj-steps-section">
+          <p class="htj-intro-text">
+            Serás parte del lanzamiento de la plataforma como anfitrión inicial,
+            con condiciones preferenciales de incorporación
+          </p>
+
+          <div class="htj-steps">
+            <div class="htj-step">
+              <div class="htj-step-number">1</div>
+              <h3 class="htj-step-title">Déjanos tus datos (1 min)</h3>
+              <p class="htj-step-description">
+                Completa el formulario corto en esta página para presentarte
+                como anfitrión
+              </p>
+            </div>
+            <div class="htj-step">
+              <div class="htj-step-number">2</div>
+              <h3 class="htj-step-title">Completa tu ficha (3-5 min)</h3>
+              <p class="htj-step-description">
+                Si hay un match y tu alojamiento se ajusta al perfil de la
+                plataforma, recibirás un correo con un formulario completo para
+                crear tu ficha
+              </p>
+            </div>
+            <div class="htj-step">
+              <div class="htj-step-number">3</div>
+              <h3 class="htj-step-title">Listo</h3>
+              <p class="htj-step-description">
+                Te avisaremos con antelación la fecha de salida y cuándo tu
+                ficha pase a ser publicada, para comenzar a recibir consultas y
+                reservas
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="htj-features">
+          <div class="htj-feature-item">
+            <p>
+              SIN COSTO POR LISTAR Y CON NIVEL DE COMISIÓN PREFERENCIAL PARA LOS
+              ANFITRIONES INICIALES
+            </p>
+          </div>
+          <div class="htj-feature-item">
+            <p>PUEDES PAUSAR TU FICHA CUANDO LO NECESITES</p>
+          </div>
+          <div class="htj-feature-item">
+            <p>
+              AVISO PREVIO DE LA FECHA DE LANZAMIENTO Y DE LA PUBLICACIÓN DE TU
+              FICHA
+            </p>
+          </div>
+          <div class="htj-feature-item">
+            <p>ACOMPAÑAMIENTO POR EMAIL/WHATSAPP PARA DUDAS RÁPIDAS</p>
+          </div>
+        </div>
+
+        <div class="htj-bottom-decoration">
+          <img
+            src="assets/bottom_img.svg"
+            alt="Mountain decoration"
+            class="htj-bottom-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe Form Section -->
+    <section id="hazte-anfitrion" class="subscribe-form animate-fade-in">
+      <div class="subscribe-container">
+        <h2 class="subscribe-title">
+          ¡Inscríbete ahora y sea parte del hub de los eco-lodgings!
+        </h2>
+
+        <form class="contact-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Nombre y apellido*</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Juan Pablo Pérez"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="property-name">Nombre de la propiedad*</label>
+              <input
+                type="text"
+                id="property-name"
+                name="property-name"
+                placeholder="Domos Cordillera"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="website">Instagram, Airbnb o página web</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                placeholder="www.domos-cordillera.cl"
+              />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="email">Email*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="juan.perez@domos-cordillera.cl"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="region">Región*</label>
+              <select id="region" name="region" required>
+                <option value="">Elegir</option>
+                <option value="Norte">Norte</option>
+                <option value="Centro">Centro</option>
+                <option value="Sur">Sur</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp*</label>
+              <input
+                type="tel"
+                id="whatsapp"
+                name="whatsapp"
+                required
+                placeholder="+56 9 1234 5678"
+              />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="property-type">Tipo de propiedad*</label>
+              <select id="property-type" name="property-type" required>
+                <option value="">Elegir</option>
+                <option value="domo">Domo</option>
+                <option value="cabana">Cabaña</option>
+                <option value="glamping">Glamping</option>
+                <option value="lodge">Lodge</option>
+                <option value="refugio">Refugio</option>
+                <option value="villa">Villa</option>
+                <option value="campo">Casa de campo</option>
+                <option value="arbol">Casa de arbol</option>
+                <option value="yurta">Yurta</option>
+                <option value="hotel">Hotel Boutique</option>
+                <option value="otra">Otra</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Enviar mis datos</button>
+            <div class="checkbox-group">
+              <input
+                type="checkbox"
+                id="authorization"
+                name="authorization"
+                required
+                checked
+              />
+              <label for="authorization"
+                >Autorizo a Natik a contactarme por email/WhatsApp</label
+              >
+            </div>
+          </div>
+
+          <img
+            src="assets/tree.svg"
+            alt="Tree decoration"
+            class="form-decoration"
+          />
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img
+              src="assets/logo_natik.svg"
+              alt="Natik Logo"
+              class="footer-logo"
+            />
+          </div>
+
+          <nav class="footer-nav">
+            <a href="#que-es-natik" class="footer-link">Que es Natik</a>
+            <a href="#para-anfitriones" class="footer-link">Para Anfitriones</a>
+            <a href="#como-sumarte" class="footer-link">Como sumarte</a>
+            <a href="#contacto" class="footer-link">Contacto</a>
+          </nav>
+
+          <div class="footer-support">
+            <span class="support-text">Apoyado por</span>
+            <img
+              src="assets/start-up_white.png"
+              alt="Start-up Chile"
+              class="support-logo"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Thank You Popup -->
+    <div id="thankYouPopup" class="popup-overlay">
+      <div class="popup-content">
+        <button class="popup-close" aria-label="Cerrar">&times;</button>
+
+        <div class="popup-header">
+          <img
+            src="assets/logo_natik.svg"
+            alt="Natik Logo"
+            class="popup-logo"
+          />
+          <div class="popup-highlights">
+            <span class="popup-highlight">¡GRACIAS!</span>
+          </div>
+        </div>
+
+        <div class="popup-body">
+          <h2 class="popup-title">Tu solicitud ha sido enviada exitosamente</h2>
+          <p class="popup-message">
+            Hemos recibido tu información y nos pondremos en contacto contigo
+            pronto para continuar con el proceso de incorporación como anfitrión
+            de Natik.
+          </p>
+
+          <div class="popup-features">
+            <div class="popup-feature">
+              <img src="assets/check.svg" alt="Check" class="popup-check" />
+              <span>Revisaremos tu solicitud en 24-48 horas</span>
+            </div>
+            <div class="popup-feature">
+              <img src="assets/check.svg" alt="Check" class="popup-check" />
+              <span>Te contactaremos por email o WhatsApp</span>
+            </div>
+            <div class="popup-feature">
+              <img src="assets/check.svg" alt="Check" class="popup-check" />
+              <span>Serás parte del lanzamiento inicial</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup-footer">
+          <button class="popup-cta-button">¡Perfecto!</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
