@@ -1,0 +1,13 @@
+{
+  "name": "natik-landing",
+  "version": "1.0.0",
+  "description": "Natik Landing Page - Digital home for nature accommodations",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Open index.html in browser'"
+  },
+  "keywords": ["natik", "landing-page", "static-site"],
+  "author": "Natik Team",
+  "license": "MIT"
+}
