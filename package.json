@@ -4,7 +4,7 @@
   "description": "Natik Landing Page - Digital home for nature accommodations",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Static site - no build needed'",
+    "build": "cp -r . dist/ && rm -rf dist/.git dist/node_modules",
     "start": "echo 'Open index.html in browser'"
   },
   "keywords": ["natik", "landing-page", "static-site"],
