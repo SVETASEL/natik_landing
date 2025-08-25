@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   line-height: 1.6;
@@ -275,7 +280,7 @@ body {
   padding: 0 80px;
   background-color: white;
   text-align: center;
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .about-container {
@@ -298,7 +303,7 @@ body {
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
@@ -363,7 +368,7 @@ body {
   padding: 0 80px;
   background-color: white;
   text-align: center;
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .why-container {
@@ -414,12 +419,19 @@ body {
   background-color: rgba(248, 246, 243, 1);
 }
 
-.ps-icon {
-  width: auto;
+.ps-image {
+  width: 70px;
   height: 175px;
   align-self: center;
   object-fit: contain;
   margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .ps-image {
+    width: 65px;
+    height: 150px;
+  }
 }
 
 .ps-content {
@@ -482,6 +494,12 @@ body {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .how-to-join {
+    padding: 60px 0;
+  }
+}
+
 .how-to-join-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -508,6 +526,14 @@ body {
   margin-right: auto;
 }
 
+@media (max-width: 768px) {
+  .htj-subtitle {
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
 .htj-steps-section {
   background-color: white;
   border-radius: 16px;
@@ -529,8 +555,16 @@ body {
 .htj-steps {
   display: flex;
   gap: 40px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .htj-steps {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
 }
 
 .htj-step {
@@ -576,6 +610,14 @@ body {
   gap: 24px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .htj-features {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 20px;
+  }
 }
 
 .htj-feature-item {
@@ -924,7 +966,7 @@ body {
 
   .hero-highlights {
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
   }
 
   .nav-links a {
@@ -945,10 +987,16 @@ body {
 
   .hero {
     height: 70vh;
+    padding: 0 10px;
   }
 
   .hero-content {
-    padding: 0 20px;
+    padding: 0 10px;
+  }
+
+  .hero-image {
+    left: 10px;
+    right: 10px;
   }
 
   .hero-title {
@@ -989,7 +1037,7 @@ body {
   .about-subtitle {
     font-size: 16px;
     line-height: 22px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
   .benefits {
@@ -1016,7 +1064,7 @@ body {
   .why-subtitle {
     font-size: 16px;
     line-height: 22px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
   .problems-solutions {
@@ -1065,7 +1113,12 @@ body {
   }
 
   .hero-content {
-    padding: 0 15px;
+    padding: 0 10px;
+  }
+
+  .hero-image {
+    left: 10px;
+    right: 10px;
   }
 
   .hero-title {
