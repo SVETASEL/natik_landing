@@ -953,10 +953,10 @@ body {
 
   .nav-menu {
     position: fixed;
-    top: 90px;
+    top: 60px;
     left: -100%;
     width: 100%;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 60px);
     background-color: white;
     flex-direction: column;
     justify-content: flex-start;
