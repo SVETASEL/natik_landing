@@ -1084,6 +1084,8 @@ body {
 
   .problem-solution-card {
     padding: 24px;
+    align-items: center;
+    text-align: center;
   }
 
   .ps-icon {
