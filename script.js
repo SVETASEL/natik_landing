@@ -76,8 +76,40 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(element);
   });
 
-  // Form submission handler
+  // Form validation and button state management
   const contactForm = document.querySelector(".contact-form");
+  const submitBtn = contactForm?.querySelector(".submit-btn");
+  
+  function validateForm() {
+    if (!contactForm || !submitBtn) return;
+    
+    const requiredFields = contactForm.querySelectorAll("input[required], select[required]");
+    let allValid = true;
+    
+    requiredFields.forEach(field => {
+      if (field.type === "checkbox") {
+        if (!field.checked) allValid = false;
+      } else {
+        if (!field.value.trim()) allValid = false;
+      }
+    });
+    
+    submitBtn.disabled = !allValid;
+  }
+  
+  // Add event listeners to all form fields for real-time validation
+  if (contactForm) {
+    const allFields = contactForm.querySelectorAll("input, select");
+    allFields.forEach(field => {
+      field.addEventListener("input", validateForm);
+      field.addEventListener("change", validateForm);
+    });
+    
+    // Initial validation
+    validateForm();
+  }
+
+  // Form submission handler
   if (contactForm) {
     contactForm.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -117,6 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Success feedback
         submitBtn.textContent = "¡Enviado exitosamente!";
         submitBtn.style.backgroundColor = "#2f9e72";
+        submitBtn.style.color = "white";
+        submitBtn.style.opacity = "1";
 
         // Show thank you popup after brief delay
         setTimeout(() => {
@@ -125,6 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
           submitBtn.style.backgroundColor = "";
+          submitBtn.style.color = "";
+          submitBtn.style.opacity = "";
         }, 1000);
       } catch (error) {
         console.error("Error submitting form:", error);
@@ -132,12 +168,16 @@ document.addEventListener("DOMContentLoaded", function () {
         // Error feedback
         submitBtn.textContent = "Error - Intentar nuevamente";
         submitBtn.style.backgroundColor = "#e74c3c";
+        submitBtn.style.color = "white";
+        submitBtn.style.opacity = "1";
 
         // Reset button after 3 seconds
         setTimeout(() => {
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
           submitBtn.style.backgroundColor = "";
+          submitBtn.style.color = "";
+          submitBtn.style.opacity = "";
         }, 3000);
       }
     });
