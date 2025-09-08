@@ -32,10 +32,51 @@
       href="assets/apple-touch-icon.png"
     />
 
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WVTZC76F");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "GA_MEASUREMENT_ID");
+    </script>
+    <!-- End Google Analytics 4 -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js"></script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WVTZC76F"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Navigation Bar -->
     <nav class="navbar">
       <div class="nav-container">
@@ -561,13 +602,39 @@
             <a href="#contacto" class="footer-link">Contacto</a>
           </nav>
 
-          <div class="footer-support">
-            <span class="support-text">Apoyado por</span>
-            <img
-              src="assets/start-up_white.png"
-              alt="Start-up Chile"
-              class="support-logo"
-            />
+          <div class="footer-right">
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <img
+                  src="assets/Instagram_icon.svg"
+                  alt="Instagram"
+                  class="social-icon"
+                />
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <img
+                  src="assets/Linkedin_icon.svg"
+                  alt="LinkedIn"
+                  class="social-icon"
+                />
+              </a>
+              <a href="#" class="social-link" aria-label="WhatsApp">
+                <img
+                  src="assets/whatsapp_icon.svg"
+                  alt="WhatsApp"
+                  class="social-icon"
+                />
+              </a>
+            </div>
+
+            <div class="footer-support">
+              <span class="support-text">Apoyado por</span>
+              <img
+                src="assets/start-up_white.png"
+                alt="Start-up Chile"
+                class="support-logo"
+              />
+            </div>
           </div>
         </div>
       </div>
