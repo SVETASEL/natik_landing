@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Track conversion
       gtag('event', 'conversion', {
-        send_to: 'GA_MEASUREMENT_ID/CONVERSION_ID',
+        send_to: 'G-W4463882MQ/CONVERSION_ID',
         event_category: 'Lead Generation',
         event_label: 'Host Application Completed'
       });
