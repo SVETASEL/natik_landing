@@ -16,7 +16,7 @@ app.use(cors({
   origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Seed-Secret']
 }));
 app.use(helmet());
 app.use(morgan('combined'));
@@ -113,6 +113,8 @@ try {
   app.use('/api/articles', require('./routes/articles'));
   app.use('/api/categories', require('./routes/categories'));
   app.use('/api/auth', require('./routes/auth'));
+  // Admin routes (temporary seeding endpoint, protected)
+  app.use('/api/admin', require('./routes/admin'));
   console.log('✅ Routes loaded successfully');
 } catch (error) {
   console.error('❌ Error loading routes:', error.message);
