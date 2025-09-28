@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? [process.env.FRONTEND_URL, 'https://natik.netlify.app'] 
-  : ['http://localhost:3000', 'http://127.0.0.1:3000'];
+  ? [process.env.FRONTEND_URL, 'https://natik.pages.dev', 'https://natik.netlify.app'] 
+  : ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5500'];
 
 app.use(cors({
   origin: allowedOrigins,
