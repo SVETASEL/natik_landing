@@ -1,6 +1,12 @@
 # Cloudflare Pages redirects for Natik
 
-# Admin panel routing
+# Admin panel routing - direct file access first
+/admin-login.html /admin-login.html 200
+/admin-dashboard.html /admin-dashboard.html 200
+/admin-articles.html /admin-articles.html 200
+/admin-article-editor.html /admin-article-editor.html 200
+
+# Admin panel routing - friendly URLs
 /admin /admin-dashboard.html 200
 /admin/ /admin-dashboard.html 200
 /admin/login /admin-login.html 200
