@@ -4,7 +4,7 @@
   "description": "Natik Landing Page - Digital home for nature accommodations",
   "main": "index.html",
   "scripts": {
-    "build": "mkdir -p dist && cp -r assets config.js index.html script.js styles.css _headers README.md dist/",
+    "build": "mkdir -p dist && cp -r assets config.js *.html *.js *.css _headers _redirects README.md dist/",
     "start": "echo 'Open index.html in browser'"
   },
   "keywords": ["natik", "landing-page", "static-site"],
