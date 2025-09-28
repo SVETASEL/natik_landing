@@ -23,13 +23,37 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
-    message: 'Natik Backend API is running',
-    timestamp: new Date().toISOString()
-  });
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Database status endpoint
+app.get('/api/status', async (req, res) => {
+  try {
+    const { PrismaClient } = require('@prisma/client');
+    const prisma = new PrismaClient();
+    
+    const articleCount = await prisma.article.count();
+    const categoryCount = await prisma.category.count();
+    const userCount = await prisma.user.count();
+    
+    await prisma.$disconnect();
+    
+    res.json({
+      status: 'Database connected',
+      articles: articleCount,
+      categories: categoryCount,
+      users: userCount,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'Database error',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
 });
 
 // Import routes
