@@ -1,4 +1,5 @@
-const prisma = require('../models');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 // Get all categories
 const getCategories = async (req, res) => {

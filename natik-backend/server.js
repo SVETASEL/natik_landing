@@ -108,10 +108,15 @@ app.post('/api/setup', async (req, res) => {
   }
 });
 
-// Import routes
-app.use('/api/articles', require('./routes/articles'));
-app.use('/api/categories', require('./routes/categories'));
-app.use('/api/auth', require('./routes/auth'));
+// Import routes with error handling
+try {
+  app.use('/api/articles', require('./routes/articles'));
+  app.use('/api/categories', require('./routes/categories'));
+  app.use('/api/auth', require('./routes/auth'));
+  console.log('✅ Routes loaded successfully');
+} catch (error) {
+  console.error('❌ Error loading routes:', error.message);
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
