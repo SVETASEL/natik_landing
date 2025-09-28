@@ -56,6 +56,58 @@ app.get('/api/status', async (req, res) => {
   }
 });
 
+// Manual database setup endpoint
+app.post('/api/setup', async (req, res) => {
+  try {
+    const { PrismaClient } = require('@prisma/client');
+    const bcrypt = require('bcryptjs');
+    const prisma = new PrismaClient();
+    
+    // Create categories
+    const categories = [
+      { name: 'Turismo Sostenible', slug: 'turismo-sostenible' },
+      { name: 'Destinos', slug: 'destinos' },
+      { name: 'Ecoturismo', slug: 'ecoturismo' },
+      { name: 'Noticias', slug: 'noticias' },
+      { name: 'Guías', slug: 'guias' }
+    ];
+
+    for (const category of categories) {
+      await prisma.category.upsert({
+        where: { slug: category.slug },
+        update: {},
+        create: category
+      });
+    }
+    
+    // Create admin user
+    const hashedPassword = await bcrypt.hash('admin123', 10);
+    await prisma.user.upsert({
+      where: { email: 'admin@natik.com' },
+      update: {},
+      create: {
+        email: 'admin@natik.com',
+        password: hashedPassword,
+        role: 'ADMIN'
+      }
+    });
+    
+    await prisma.$disconnect();
+    
+    res.json({
+      status: 'Database setup completed',
+      message: 'Categories and admin user created',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'Setup failed',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // Import routes
 app.use('/api/articles', require('./routes/articles'));
 app.use('/api/categories', require('./routes/categories'));
