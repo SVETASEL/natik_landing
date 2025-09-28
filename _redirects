@@ -13,4 +13,4 @@
 /noticias/* /news-detail.html 200
 
 # API fallback (if using external backend)
-/api/* https://your-backend-url.com/api/:splat 200
+/api/* https://natik-landing.onrender.com/api/:splat 200
