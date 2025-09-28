@@ -1,0 +1,16 @@
+# Cloudflare Pages redirects for Natik
+
+# Admin panel routing
+/admin /admin-dashboard.html 200
+/admin/ /admin-dashboard.html 200
+/admin/login /admin-login.html 200
+/admin/articles /admin-articles.html 200
+/admin/articles/new /admin-article-editor.html 200
+/admin/articles/edit/* /admin-article-editor.html 200
+
+# News routing
+/news/* /news-detail.html 200
+/noticias/* /news-detail.html 200
+
+# API fallback (if using external backend)
+/api/* https://your-backend-url.com/api/:splat 200

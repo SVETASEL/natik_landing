@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Artículos - Natik Admin</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .back-link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .editor-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .editor-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .save-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-container {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .content-editor {
+            min-height: 400px;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 2rem;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .image-upload:hover {
+            border-color: #4CAF50;
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .save-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">Natik Admin</div>
+            <div class="nav-links">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-articles.html">Artículos</a>
+                <a href="#" onclick="showComingSoon()">Categorías</a>
+            </div>
+            <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="messageContainer"></div>
+        
+        <div class="page-header">
+            <h1 class="page-title" id="pageTitle">Nuevo Artículo</h1>
+            <a href="admin-articles.html" class="back-link">← Volver a Artículos</a>
+        </div>
+
+        <div class="editor-container">
+            <div class="editor-header">
+                <h3 id="editorTitle">Crear Nuevo Artículo</h3>
+                <div class="save-actions">
+                    <button class="btn btn-secondary" onclick="saveDraft()" id="saveDraftBtn">Guardar Borrador</button>
+                    <button class="btn btn-primary" onclick="publishArticle()" id="publishBtn">Publicar</button>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <form id="articleForm">
+                    <div class="form-group">
+                        <label for="title">Título *</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="excerpt">Resumen</label>
+                        <textarea id="excerpt" name="excerpt" placeholder="Breve descripción del artículo..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Categoría *</label>
+                            <select id="category" name="categoryId" required>
+                                <option value="">Seleccionar categoría...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imageUrl">URL de Imagen</label>
+                            <input type="url" id="imageUrl" name="imageUrl" placeholder="https://ejemplo.com/imagen.jpg">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Contenido *</label>
+                        <textarea id="content" name="content" class="content-editor" required placeholder="Escribe el contenido del artículo aquí..."></textarea>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="featured" name="featured">
+                        <label for="featured">Artículo destacado</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3001/api';
+        let authToken = null;
+        let articleId = null;
+        let categories = [];
+
+        // Check authentication and load data on page load
+        window.addEventListener('load', () => {
+            authToken = localStorage.getItem('adminToken');
+            if (!authToken) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+
+            // Check if editing existing article
+            const urlParams = new URLSearchParams(window.location.search);
+            articleId = urlParams.get('id');
+            
+            if (articleId) {
+                document.getElementById('pageTitle').textContent = 'Editar Artículo';
+                document.getElementById('editorTitle').textContent = 'Editar Artículo';
+            }
+            
+            verifyTokenAndLoadData();
+        });
+
+        async function verifyTokenAndLoadData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Token verification failed');
+                }
+                
+                await loadCategories();
+                
+                if (articleId) {
+                    await loadArticle(articleId);
+                }
+            } catch (error) {
+                console.error('Authentication error:', error);
+                localStorage.removeItem('adminToken');
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/categories`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    categories = await response.json();
+                    populateCategorySelect();
+                } else {
+                    throw new Error('Failed to load categories');
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                showError('Error al cargar las categorías');
+            }
+        }
+
+        function populateCategorySelect() {
+            const select = document.getElementById('category');
+            select.innerHTML = '<option value="">Seleccionar categoría...</option>';
+            
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name;
+                select.appendChild(option);
+            });
+        }
+
+        async function loadArticle(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/articles/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const article = await response.json();
+                    populateForm(article);
+                } else {
+                    throw new Error('Failed to load article');
+                }
+            } catch (error) {
+                console.error('Error loading article:', error);
+                showError('Error al cargar el artículo');
+            }
+        }
+
+        function populateForm(article) {
+            document.getElementById('title').value = article.title || '';
+            document.getElementById('excerpt').value = article.excerpt || '';
+            document.getElementById('category').value = article.categoryId || '';
+            document.getElementById('imageUrl').value = article.imageUrl || '';
+            document.getElementById('content').value = article.content || '';
+            document.getElementById('featured').checked = article.featured || false;
+        }
+
+        async function saveDraft() {
+            await saveArticle(false);
+        }
+
+        async function publishArticle() {
+            await saveArticle(true);
+        }
+
+        async function saveArticle(publish = false) {
+            const form = document.getElementById('articleForm');
+            const formData = new FormData(form);
+            
+            const articleData = {
+                title: formData.get('title'),
+                excerpt: formData.get('excerpt'),
+                content: formData.get('content'),
+                imageUrl: formData.get('imageUrl'),
+                categoryId: parseInt(formData.get('categoryId')),
+                featured: formData.has('featured'),
+                published: publish
+            };
+
+            // Validation
+            if (!articleData.title.trim()) {
+                showError('El título es obligatorio');
+                return;
+            }
+
+            if (!articleData.content.trim()) {
+                showError('El contenido es obligatorio');
+                return;
+            }
+
+            if (!articleData.categoryId) {
+                showError('Debes seleccionar una categoría');
+                return;
+            }
+
+            // Disable buttons during save
+            const saveDraftBtn = document.getElementById('saveDraftBtn');
+            const publishBtn = document.getElementById('publishBtn');
+            
+            saveDraftBtn.disabled = true;
+            publishBtn.disabled = true;
+            
+            const originalSaveText = saveDraftBtn.textContent;
+            const originalPublishText = publishBtn.textContent;
+            
+            saveDraftBtn.textContent = 'Guardando...';
+            publishBtn.textContent = 'Guardando...';
+
+            try {
+                const url = articleId 
+                    ? `${API_BASE_URL}/articles/${articleId}`
+                    : `${API_BASE_URL}/articles`;
+                
+                const method = articleId ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(articleData)
+                });
+
+                if (response.ok) {
+                    const savedArticle = await response.json();
+                    
+                    if (!articleId) {
+                        // New article created, update URL to edit mode
+                        articleId = savedArticle.id;
+                        window.history.replaceState({}, '', `admin-article-editor.html?id=${articleId}`);
+                        document.getElementById('pageTitle').textContent = 'Editar Artículo';
+                        document.getElementById('editorTitle').textContent = 'Editar Artículo';
+                    }
+                    
+                    const message = publish 
+                        ? 'Artículo publicado exitosamente'
+                        : 'Borrador guardado exitosamente';
+                    
+                    showSuccess(message);
+                } else {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Error al guardar artículo');
+                }
+            } catch (error) {
+                console.error('Error saving article:', error);
+                showError('Error al guardar el artículo: ' + error.message);
+            } finally {
+                saveDraftBtn.disabled = false;
+                publishBtn.disabled = false;
+                saveDraftBtn.textContent = originalSaveText;
+                publishBtn.textContent = originalPublishText;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'admin-login.html';
+        }
+
+        function showError(message) {
+            showMessage(message, 'error');
+        }
+
+        function showSuccess(message) {
+            showMessage(message, 'success');
+        }
+
+        function showMessage(message, type) {
+            const container = document.getElementById('messageContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type;
+            messageDiv.textContent = message;
+            container.innerHTML = '';
+            container.appendChild(messageDiv);
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        function showComingSoon() {
+            alert('Esta funcionalidad estará disponible próximamente.');
+        }
+
+        // Auto-save draft every 2 minutes
+        setInterval(() => {
+            if (document.getElementById('title').value.trim()) {
+                saveDraft();
+            }
+        }, 120000);
+    </script>
+</body>
+</html>

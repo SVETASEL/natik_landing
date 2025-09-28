@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Natik</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .articles-list {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .article-item:last-child {
+            border-bottom: none;
+        }
+
+        .article-info h4 {
+            margin-bottom: 0.25rem;
+            color: #333;
+        }
+
+        .article-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .article-status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-published {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-draft {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">Natik Admin</div>
+            <div class="user-menu">
+                <span id="userEmail">admin@natik.com</span>
+                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="errorMessage" class="error" style="display: none;"></div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalArticles">-</div>
+                <div class="stat-label">Total Artículos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="publishedArticles">-</div>
+                <div class="stat-label">Publicados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="draftArticles">-</div>
+                <div class="stat-label">Borradores</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalCategories">-</div>
+                <div class="stat-label">Categorías</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Gestión de Artículos</h3>
+                </div>
+                <p>Crear, editar y administrar artículos de noticias.</p>
+                <div class="card-actions">
+                    <a href="admin-article-editor.html" class="btn btn-primary">Nuevo Artículo</a>
+                    <a href="admin-articles.html" class="btn btn-secondary">Ver Todos</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Categorías</h3>
+                </div>
+                <p>Administrar categorías de contenido.</p>
+                <div class="card-actions">
+                    <a href="#" class="btn btn-primary" onclick="showComingSoon()">Nueva Categoría</a>
+                    <a href="#" class="btn btn-secondary" onclick="showComingSoon()">Gestionar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Configuración</h3>
+                </div>
+                <p>Configuración del sistema y perfil de usuario.</p>
+                <div class="card-actions">
+                    <a href="#" class="btn btn-secondary" onclick="showComingSoon()">Cambiar Contraseña</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="articles-list">
+            <h3 style="margin-bottom: 1rem;">Artículos Recientes</h3>
+            <div id="recentArticles" class="loading">Cargando artículos...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3001/api';
+        let authToken = null;
+
+        // Check authentication on page load
+        window.addEventListener('load', () => {
+            authToken = localStorage.getItem('adminToken');
+            if (!authToken) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            
+            verifyTokenAndLoadData();
+        });
+
+        async function verifyTokenAndLoadData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Token verification failed');
+                }
+                
+                // Token is valid, load dashboard data
+                loadDashboardData();
+            } catch (error) {
+                console.error('Authentication error:', error);
+                localStorage.removeItem('adminToken');
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Load statistics and recent articles
+                await Promise.all([
+                    loadStatistics(),
+                    loadRecentArticles()
+                ]);
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showError('Error al cargar los datos del dashboard');
+            }
+        }
+
+        async function loadStatistics() {
+            try {
+                const [articlesResponse, categoriesResponse] = await Promise.all([
+                    fetch(`${API_BASE_URL}/articles`, {
+                        headers: { 'Authorization': `Bearer ${authToken}` }
+                    }),
+                    fetch(`${API_BASE_URL}/categories`, {
+                        headers: { 'Authorization': `Bearer ${authToken}` }
+                    })
+                ]);
+
+                if (articlesResponse.ok && categoriesResponse.ok) {
+                    const articles = await articlesResponse.json();
+                    const categories = await categoriesResponse.json();
+
+                    const publishedCount = articles.filter(article => article.published).length;
+                    const draftCount = articles.filter(article => !article.published).length;
+
+                    document.getElementById('totalArticles').textContent = articles.length;
+                    document.getElementById('publishedArticles').textContent = publishedCount;
+                    document.getElementById('draftArticles').textContent = draftCount;
+                    document.getElementById('totalCategories').textContent = categories.length;
+                }
+            } catch (error) {
+                console.error('Error loading statistics:', error);
+            }
+        }
+
+        async function loadRecentArticles() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/articles`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+
+                if (response.ok) {
+                    const articles = await response.json();
+                    const recentArticles = articles
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                        .slice(0, 5);
+
+                    displayRecentArticles(recentArticles);
+                } else {
+                    throw new Error('Failed to load articles');
+                }
+            } catch (error) {
+                console.error('Error loading recent articles:', error);
+                document.getElementById('recentArticles').innerHTML = 
+                    '<p style="color: #666;">Error al cargar artículos recientes</p>';
+            }
+        }
+
+        function displayRecentArticles(articles) {
+            const container = document.getElementById('recentArticles');
+            
+            if (articles.length === 0) {
+                container.innerHTML = '<p style="color: #666;">No hay artículos disponibles</p>';
+                return;
+            }
+
+            container.innerHTML = articles.map(article => `
+                <div class="article-item">
+                    <div class="article-info">
+                        <h4>${article.title}</h4>
+                        <p>${article.excerpt || 'Sin descripción'}</p>
+                    </div>
+                    <div class="article-status ${article.published ? 'status-published' : 'status-draft'}">
+                        ${article.published ? 'Publicado' : 'Borrador'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'admin-login.html';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function showComingSoon() {
+            alert('Esta funcionalidad estará disponible próximamente.');
+        }
+    </script>
+</body>
+</html>
