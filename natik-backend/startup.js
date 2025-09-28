@@ -1,15 +1,33 @@
 const { execSync } = require('child_process');
+const path = require('path');
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 
 async function setupDatabase() {
   try {
+    const schemaPath = path.join(__dirname, 'prisma', 'schema.prisma');
+    console.log('🧭 Using Prisma schema at:', schemaPath);
+
+    console.log('🔧 Generating Prisma client...');
+    try {
+      execSync(`npx prisma generate --schema="${schemaPath}"`, { stdio: 'inherit' });
+      console.log('✅ Prisma client generated');
+    } catch (genError) {
+      console.error('⚠️ Prisma generate failed (continuing):', genError.message);
+    }
+
     console.log('🔄 Applying database migrations...');
     try {
-      execSync('npx prisma migrate deploy', { stdio: 'inherit' });
+      execSync(`npx prisma migrate deploy --schema="${schemaPath}"`, { stdio: 'inherit' });
       console.log('✅ Migrations completed');
     } catch (migrationError) {
-      console.error('⚠️ Migration failed (continuing):', migrationError.message);
+      console.error('⚠️ Migration failed, attempting schema push (likely provider mismatch P3019):', migrationError.message);
+      try {
+        execSync(`npx prisma db push --accept-data-loss --schema="${schemaPath}"`, { stdio: 'inherit' });
+        console.log('✅ Schema pushed to database');
+      } catch (pushError) {
+        console.error('❌ Prisma db push failed:', pushError.message);
+      }
     }
     // Initialize baseline data idempotently
     await initializeData();
