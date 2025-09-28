@@ -115,8 +115,6 @@ try {
   app.use('/api/articles', require('./routes/articles'));
   app.use('/api/categories', require('./routes/categories'));
   app.use('/api/auth', require('./routes/auth'));
-  // Admin routes (temporary seeding endpoint, protected)
-  app.use('/api/admin', require('./routes/admin'));
   console.log('✅ Routes loaded successfully');
 } catch (error) {
   console.error('❌ Error loading routes:', error.message);
