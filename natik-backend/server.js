@@ -20,8 +20,22 @@ app.use(cors({
   optionsSuccessStatus: 204,
   preflightContinue: false
 }));
-// Express 5: use parameter with wildcard modifier for catch-all OPTIONS
-app.options('/:splat*', cors());
+// Universal preflight handler (no path pattern to avoid path-to-regexp issues)
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    // Mirror CORS headers
+    const origin = req.headers.origin;
+    if (allowedOrigins === '*' || (Array.isArray(allowedOrigins) && allowedOrigins.includes(origin))) {
+      res.header('Access-Control-Allow-Origin', origin);
+    }
+    res.header('Vary', 'Origin');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Seed-Secret');
+    return res.sendStatus(204);
+  }
+  next();
+});
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
