@@ -118,6 +118,18 @@ document.addEventListener("DOMContentLoaded", function () {
     validateForm();
   }
 
+  // Initialize Supabase client (requires CONFIG.SUPABASE_URL and CONFIG.SUPABASE_ANON_KEY)
+  let supabaseClient = null;
+  try {
+    const supabaseUrl = (typeof CONFIG !== 'undefined' && CONFIG.SUPABASE_URL) ? CONFIG.SUPABASE_URL : '';
+    const supabaseAnonKey = (typeof CONFIG !== 'undefined' && CONFIG.SUPABASE_ANON_KEY) ? CONFIG.SUPABASE_ANON_KEY : '';
+    if (window.supabase && typeof window.supabase.createClient === 'function' && supabaseUrl && supabaseAnonKey) {
+      supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+    }
+  } catch (e) {
+    console.warn('Supabase initialization warning:', e);
+  }
+
   // Form submission handler
   if (contactForm) {
     contactForm.addEventListener("submit", async function (e) {
@@ -154,7 +166,10 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Submit to Supabase
-        const { error } = await supabase
+        if (!supabaseClient) {
+          throw new Error("Supabase no está configurado. Falta SUPABASE_URL o SUPABASE_ANON_KEY.");
+        }
+        const { error } = await supabaseClient
           .from("host_applications")
           .insert([data]);
 
