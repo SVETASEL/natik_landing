@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node startup.js",
     "dev": "nodemon server.js",
-    "build": "prisma generate",
-    "postinstall": "prisma generate",
-    "deploy": "prisma migrate deploy && prisma generate",
+    "build": "echo 'skipping build; prisma generate runs in startup'",
+    "postinstall": "echo 'skipping prisma generate in postinstall'",
+    "deploy": "echo 'use startup.js for schema sync'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

@@ -36,10 +36,10 @@ const getArticleById = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const article = await prisma.article.findUnique({
-      where: { 
+    const article = await prisma.article.findFirst({
+      where: {
         id: parseInt(id),
-        published: true 
+        published: true
       },
       include: {
         category: true

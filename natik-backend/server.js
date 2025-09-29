@@ -18,8 +18,8 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Seed-Secret']
 }));
-// Explicitly handle preflight for all routes
-app.options('*', cors());
+// Explicitly handle preflight for all routes (Express 5 path-to-regexp v6)
+app.options('/(.*)', cors());
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
