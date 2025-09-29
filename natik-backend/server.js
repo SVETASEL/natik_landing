@@ -16,10 +16,12 @@ app.use(cors({
   origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Seed-Secret']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Seed-Secret'],
+  optionsSuccessStatus: 204,
+  preflightContinue: false
 }));
-// Explicitly handle preflight for all routes (Express 5 path-to-regexp v6)
-app.options('/(.*)', cors());
+// Express 5: use parameter with wildcard modifier for catch-all OPTIONS
+app.options('/:splat*', cors());
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
