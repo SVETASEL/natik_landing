@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noticias - Natik (Static)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Martel:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon-32x32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WVTZC76F");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-W4463882MQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-W4463882MQ");
+    </script>
+    <!-- End Google Analytics 4 -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WVTZC76F"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <img src="assets/logo_natik.svg" alt="Natik Logo" class="logo" />
+          </a>
+        </div>
+
+        <div class="nav-menu">
+          <ul class="nav-links">
+            <li><a href="index.html#que-es-natik">Que es Natik</a></li>
+            <li><a href="index.html#para-anfitriones">Para Anfitriones</a></li>
+            <li><a href="index.html#como-sumarte">Como sumarte</a></li>
+            <li><a href="noticias-static.html" class="active">Noticias</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-cta">
+          <a href="index.html#hazte-anfitrion" class="cta-button">Hazte Anfitrion</a>
+        </div>
+
+        <!-- Mobile menu toggle -->
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- News Hero Section -->
+    <section class="news-hero">
+      <div class="news-hero-container">
+        <h1 class="news-hero-title">Noticias Natik</h1>
+        <p class="news-hero-subtitle">
+          Mientras preparamos el backend, esta página está en modo estático. ¡Vuelve pronto!
+        </p>
+      </div>
+      <div class="news-hero-decoration">
+        <img
+          src="assets/bottom_img.svg"
+          alt="Mountain decoration"
+          class="news-hero-decoration-img"
+        />
+      </div>
+    </section>
+
+    <!-- Static News Grid Section -->
+    <section class="news-grid-section">
+      <div class="news-container">
+        <div class="news-grid">
+          <!-- Example static cards (replace with real content later) -->
+          <a class="news-card" href="#" aria-disabled="true">
+            <div class="news-card-image-wrapper">
+              <img src="assets/turista-consciente.jpg" alt="Noticia ejemplo" class="news-card-image" />
+            </div>
+            <div class="news-card-content">
+              <div class="news-card-category">Noticias</div>
+              <h3 class="news-card-title">Estamos preparando grandes novedades</h3>
+              <p class="news-card-excerpt">
+                Pronto encontrarás aquí las últimas novedades del turismo sustentable y alojamiento en naturaleza.
+              </p>
+              <div class="news-card-meta">
+                <span class="news-card-date">Próximamente</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="news-empty" style="margin-top: 1rem;">
+          <p>¿Eres prensa o colaborador? Contáctanos en <a href="mailto:hola@natiktravel.com">hola@natiktravel.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img
+              src="assets/logo_natik.svg"
+              alt="Natik Logo"
+              class="footer-logo"
+            />
+          </div>
+
+          <nav class="footer-nav">
+            <a href="index.html#que-es-natik" class="footer-link">Que es Natik</a>
+            <a href="index.html#para-anfitriones" class="footer-link">Para Anfitriones</a>
+            <a href="index.html#como-sumarte" class="footer-link">Como sumarte</a>
+            <a href="noticias-static.html" class="footer-link">Noticias</a>
+            <a href="index.html#contacto" class="footer-link">Contacto</a>
+          </nav>
+
+          <div class="footer-right">
+            <div class="footer-social">
+              <a
+                href="https://www.instagram.com/natik.travel/"
+                class="social-link"
+                aria-label="Instagram"
+              >
+                <img
+                  src="assets/Instagram_icon.svg"
+                  alt="Instagram"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/natik/"
+                class="social-link"
+                aria-label="LinkedIn"
+              >
+                <img
+                  src="assets/Linkedin_icon.svg"
+                  alt="LinkedIn"
+                  class="social-icon"
+                />
+              </a>
+              <a
+                href="https://wa.me/56956090963"
+                class="social-link"
+                aria-label="WhatsApp"
+              >
+                <img
+                  src="assets/whatsapp_icon.svg"
+                  alt="WhatsApp"
+                  class="social-icon"
+                />
+              </a>
+            </div>
+
+            <div class="footer-support">
+              <span class="support-text">Apoyado por</span>
+              <img
+                src="assets/start-up_white.png"
+                alt="Start-up Chile"
+                class="support-logo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
