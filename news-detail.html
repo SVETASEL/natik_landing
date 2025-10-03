@@ -91,7 +91,7 @@
             <li><a href="index.html#que-es-natik">Que es Natik</a></li>
             <li><a href="index.html#para-anfitriones">Para Anfitriones</a></li>
             <li><a href="index.html#como-sumarte">Como sumarte</a></li>
-            <li><a href="noticias.html" class="active">Noticias</a></li>
+            <li><a href="noticias-static.html" class="active">Noticias</a></li>
             <li><a href="index.html#contacto">Contacto</a></li>
           </ul>
         </div>
@@ -116,7 +116,7 @@
       <div class="news-detail-container">
         <!-- Back button -->
         <div class="news-back">
-          <a href="noticias.html" class="back-button">
+          <a href="noticias-static.html" class="back-button">
             <svg
               width="20"
               height="20"
@@ -253,7 +253,7 @@
             <a href="index.html#como-sumarte" class="footer-link"
               >Como sumarte</a
             >
-            <a href="noticias.html" class="footer-link">Noticias</a>
+            <a href="noticias-static.html" class="footer-link">Noticias</a>
             <a href="index.html#contacto" class="footer-link">Contacto</a>
           </nav>
 
@@ -308,6 +308,12 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Use legacy data only; skip backend while it's on hold
+      window.NEWS_STATIC_MODE = true;
+      // Prefer loading articles from a JSON file (same as noticias-static)
+      window.NEWS_JSON_URL = 'assets/news.json';
+    </script>
     <script src="news.js"></script>
     <script src="news-detail.js"></script>
   </body>

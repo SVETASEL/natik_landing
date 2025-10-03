@@ -126,30 +126,21 @@
       </div>
     </section>
 
-    <!-- Static News Grid Section -->
+    <!-- News Grid Section (same structure as noticias.html) -->
     <section class="news-grid-section">
       <div class="news-container">
-        <div class="news-grid">
-          <!-- Example static cards (replace with real content later) -->
-          <a class="news-card" href="#" aria-disabled="true">
-            <div class="news-card-image-wrapper">
-              <img src="assets/turista-consciente.jpg" alt="Noticia ejemplo" class="news-card-image" />
-            </div>
-            <div class="news-card-content">
-              <div class="news-card-category">Noticias</div>
-              <h3 class="news-card-title">Estamos preparando grandes novedades</h3>
-              <p class="news-card-excerpt">
-                Pronto encontrarás aquí las últimas novedades del turismo sustentable y alojamiento en naturaleza.
-              </p>
-              <div class="news-card-meta">
-                <span class="news-card-date">Próximamente</span>
-              </div>
-            </div>
-          </a>
+        <div class="news-grid" id="newsGrid">
+          <!-- News cards will be dynamically loaded here -->
         </div>
-
-        <div class="news-empty" style="margin-top: 1rem;">
-          <p>¿Eres prensa o colaborador? Contáctanos en <a href="mailto:hola@natiktravel.com">hola@natiktravel.com</a></p>
+        
+        <!-- Loading state -->
+        <div class="news-loading" id="newsLoading">
+          <p>Cargando noticias...</p>
+        </div>
+        
+        <!-- Empty state -->
+        <div class="news-empty" id="newsEmpty" style="display: none;">
+          <p>No hay noticias disponibles en este momento.</p>
         </div>
       </div>
     </section>
@@ -225,5 +216,77 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Tell news.js to use legacy data only (no backend calls)
+      window.NEWS_STATIC_MODE = true;
+      // Prefer loading articles from a JSON file
+      window.NEWS_JSON_URL = 'assets/news.json';
+    </script>
+    <script src="news.js"></script>
+    <script>
+      // Bootstrap the page with legacy newsData without using the backend
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          // Ensure required globals from news.js exist
+          if (!document.getElementById('newsGrid')) return;
+
+          if (Array.isArray(window.newsData) && window.newsData.length) {
+            if (typeof window.newsLoading !== 'undefined' && newsLoading) newsLoading.style.display = 'none';
+
+            // Use the same globals that news.js relies on
+            window.allArticles = window.newsData.slice();
+            window.articlesPerPage = window.articlesPerPage || 6;
+            window.displayedArticles = window.allArticles.slice(0, window.articlesPerPage);
+            window.currentPage = 1;
+
+            if (typeof window.renderNewsCards === 'function') {
+              window.renderNewsCards();
+            }
+            if (typeof window.setupLoadMoreButton === 'function') {
+              window.setupLoadMoreButton();
+            }
+          } else {
+            const empty = document.getElementById('newsEmpty');
+            const loading = document.getElementById('newsLoading');
+            if (loading) loading.style.display = 'none';
+            if (empty) empty.style.display = 'block';
+          }
+        } catch (e) {
+          console.error('Static noticias bootstrap error:', e);
+        }
+      });
+    </script>
+    <script>
+      // Dev-only: Export current legacy newsData to JSON if URL has ?export=1
+      (function () {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('export') === '1' && Array.isArray(window.newsData)) {
+            const data = window.newsData.map(a => ({
+              id: a.id,
+              title: a.title,
+              excerpt: a.excerpt,
+              content: a.content,  // HTML content preserved
+              image: a.image,
+              category: a.category,
+              date: a.date,
+              featured: !!a.featured
+            }));
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'news.json';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+            console.log('news.json exported');
+          }
+        } catch (e) {
+          console.warn('Export failed:', e);
+        }
+      })();
+    </script>
   </body>
 </html>

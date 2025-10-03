@@ -641,6 +641,41 @@ document.addEventListener("DOMContentLoaded", function () {
   newsLoading = document.getElementById("newsLoading");
   newsEmpty = document.getElementById("newsEmpty");
 
+  // If static mode is enabled (e.g., noticias-static.html), use legacy data only
+  if (window.NEWS_STATIC_MODE) {
+    (async () => {
+      try {
+        let staticArticles = [];
+        if (window.NEWS_JSON_URL) {
+          // Prefer external JSON if provided
+          const resp = await fetch(window.NEWS_JSON_URL, { cache: 'no-cache' });
+          if (resp.ok) {
+            staticArticles = await resp.json();
+            window.newsData = staticArticles;
+          }
+        }
+
+        if (!Array.isArray(staticArticles) || staticArticles.length === 0) {
+          // Fallback to embedded legacy data
+          staticArticles = Array.isArray(window.newsData) ? window.newsData : [];
+        }
+
+        if (newsLoading) newsLoading.style.display = "none";
+
+        allArticles = staticArticles.slice();
+        displayedArticles = allArticles.slice(0, articlesPerPage);
+        currentPage = 1;
+        renderNewsCards();
+        setupLoadMoreButton();
+      } catch (e) {
+        console.error('Static mode render error:', e);
+        if (newsLoading) newsLoading.style.display = "none";
+        if (newsEmpty) newsEmpty.style.display = "block";
+      }
+    })();
+    return;
+  }
+
   loadNews();
 });
 
