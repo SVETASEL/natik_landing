@@ -379,6 +379,11 @@ body {
   margin: 0;
 }
 
+/* Emphasis utility for inline bold text within benefit copy */
+.benefit-content .emphasis {
+  font-weight: 700;
+}
+
 /* Why Section */
 .why {
   padding: 0 80px;
@@ -433,6 +438,16 @@ body {
   padding: 32px 28px;
   border-radius: 28px;
   background-color: rgba(248, 246, 243, 1);
+  position: relative; /* allow absolute badge */
+}
+
+/* Centered title under image for problem-solution cards */
+.problem-solution-card h4,
+.problem-solution-card h3 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 700; /* bold */
 }
 
 .ps-image {
@@ -442,6 +457,57 @@ body {
   object-fit: contain;
   margin-bottom: 30px;
 }
+
+/* Category badge over the image */
+.ps-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(234, 116, 24, 0.12); /* orange, slightly transparent */
+  color: #ea7418;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 11px; /* slightly smaller */
+  letter-spacing: 0.2px;
+  padding: 4px 10px; /* slightly smaller */
+  border-radius: 9999px;
+  border: 1px solid rgba(234, 116, 24, 0.25);
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* subtle shadow */
+}
+
+/* Container for multiple badges side-by-side */
+.ps-badges {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* When badges are inside a container, they don't need absolute positioning */
+.ps-badges .ps-badge {
+  position: static;
+}
+
+/* Variant to space badges apart */
+.ps-badges.ps-badges--spread {
+  gap: 0;
+  justify-content: space-between;
+  left: 10px;   /* stretch to both sides */
+  right: 10px;  /* keep inside card padding */
+  width: auto;  /* no fixed width */
+}
+
+@media (max-width: 768px) {
+  .ps-badges.ps-badges--spread {
+    left: 8px;
+    right: 8px;
+  }
+}
+
+/* Optional variants (same palette now) */
 
 @media (max-width: 768px) {
   .ps-image {
@@ -460,6 +526,17 @@ body {
   align-items: flex-start;
   gap: 26px;
   margin-bottom: 12px;
+}
+
+/* Ensure the title inside the flex container is centered */
+.ps-problem-container {
+  justify-content: center;
+  text-align: center;
+}
+
+.ps-problem-container h3,
+.ps-problem-container h4 {
+  width: 100%;
 }
 
 .ps-solution-container {
