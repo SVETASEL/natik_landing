@@ -216,6 +216,11 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Use static mode and load articles from JSON (no backend calls)
+      window.NEWS_STATIC_MODE = true;
+      window.NEWS_JSON_URL = 'assets/news.json';
+    </script>
     <script src="news.js"></script>
   </body>
 </html>

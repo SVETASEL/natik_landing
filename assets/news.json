@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "El Sello S y los desafíos reales del turismo sostenible en Chile",
+    "excerpt": "Hablar de turismo sostenible está de moda, pero ¿cómo saber realmente qué empresas lo practican? Chile tiene un sistema de certificación que busca responder esta pregunta, aunque no está exento de desafíos.",
+    "content": "<h1>El Sello S y los desafíos reales del turismo sostenible en Chile</h1><p>Hablar de turismo sostenible está de moda, pero ¿cómo saber realmente qué empresas lo practican? Chile tiene un sistema de certificación que busca responder esta pregunta, aunque no está exento de desafíos.</p><h2>El sistema de sellos de Sernatur</h2><p>Sernatur maneja tres tipos de certificaciones: Sello R, Sello Q y Sello S (Turismo Sustentable). El Sello S tiene reconocimiento del GSTC y auditoría independiente.</p><h3>¿Qué evalúa el Sello S?</h3><ul><li>Económico</li><li>Sociocultural</li><li>Ambiental</li></ul><h2>El problema del costo</h2><p>La auditoría externa puede ser costosa para empresas pequeñas. Muchas priorizan mejoras internas antes de certificarse.</p><h3>Compromiso Turismo Sustentable</h3><p>Distintivo básico pensado para micro y pequeñas empresas como alternativa accesible.</p><h2>Capacitación</h2><p>Cursos en Sustentabilidad, Cambio Climático, Accesibilidad, entre otros.</p><h2>Desafíos</h2><ul><li>Coordinación entre actores</li><li>Datos confiables</li><li>Brecha entre grandes y pequeñas</li></ul><h2>Camino adelante</h2><p>Importa el compromiso real, visión a largo plazo, colaboración y medición constante.</p>",
+    "image": "assets/blog_sellos.png",
+    "category": "Certificación",
+    "date": "2025-09-21",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Chile se corona como destino verde mundial: ¿Qué hay detrás de este éxito?",
+    "excerpt": "Chile no para de ganar premios por su turismo verde. Hace poco, el país se llevó el reconocimiento como 'Principal Destino Verde de Sudamérica' en los World Travel Awards 2024.",
+    "content": "<p>Chile reafirma liderazgo en turismo sostenible con múltiples premios internacionales.</p><h2>¿Qué es turismo sostenible?</h2><p>Equilibrio económico, ambiental y sociocultural.</p><h2>Estrategia 2035</h2><ul><li>Cultura y conciencia</li><li>Acción climática</li><li>Compromiso empresarial</li><li>Biodiversidad</li><li>Bienestar local</li><li>Seguridad y resiliencia</li><li>Inclusión</li><li>Destinos sostenibles</li></ul><h2>Adaptación al cambio climático</h2><p>Plan sectorial con objetivos en resiliencia, conservación y gestión.</p>",
+    "image": "assets/blog_img5.jpg",
+    "category": "Noticias",
+    "date": "2025-09-16",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "title": "El nuevo turista chileno: más consciente, más conectado con la naturaleza",
+    "excerpt": "Los viajeros buscan experiencias auténticas y responsables, conectadas con la naturaleza y las comunidades locales.",
+    "content": "<p>El viajero actual es más informado, tecnológico y consciente del impacto.</p><h2>Mentalidad</h2><p>Planificación activa, autenticidad y conexión local.</p><h2>¿Cuesta más?</h2><p>Puede implicar costos mayores, pero con valor percibido en impacto y calidad.</p><h2>Hallazgos del cicloturismo</h2><p>Más días en destino y alto impacto local.</p>",
+    "image": "assets/blog_img3.jpg",
+    "category": "Tendencias",
+    "date": "2025-09-09",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "title": "2025: El año en que Latinoamérica se vuelve el destino favorito",
+    "excerpt": "La región ofrece experiencias responsables, tecnología útil y mayor protagonismo de comunidades locales.",
+    "content": "<p>Latinoamérica crece con experiencias auténticas y sostenibles.</p><h2>Tecnología</h2><p>Tours virtuales, apps y RA.</p><h2>Bienestar</h2><p>Retiros, naturaleza y desconexión.</p><h2>Comunidades</h2><p>Hoteles rurales, festivales y gastronomía local.</p>",
+    "image": "assets/blog_img4.jpg",
+    "category": "Destinos",
+    "date": "2025-09-02",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "title": "'Chile no puede promover turismo de naturaleza sin sustentabilidad' - Subsecretaria de Turismo",
+    "excerpt": "La sustentabilidad es prioritaria para el desarrollo turístico del país, con destinos y políticas focalizadas.",
+    "content": "<p>Compromiso nacional con turismo sostenible.</p><h2>Destinos prioritarios</h2><p>Rapa Nui, San Pedro de Atacama y Torres del Paine con lineamientos de sostenibilidad.</p><h2>Alianzas</h2><p>Certificaciones, producción limpia y acuerdos sectoriales.</p><h2>Economía y clima</h2><p>Relevancia en PIB y resiliencia ante emergencias.</p>",
+    "image": "assets/blog_img6.png",
+    "category": "Opiniones",
+    "date": "2025-08-15",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "title": "Natik es seleccionado por Start-Up Chile como una de las startups de la generación BIG10",
+    "excerpt": "Listado de proyectos seleccionados y mención a Natik en programas Build, Ignite y Growth.",
+    "content": "<h1>Start-Up Chile BIG10</h1><p>Natik entre las startups seleccionadas.</p><h2>Build</h2><p>50x, Carriapp, cobraAI, Cumpl.io, Flick AI, Glorisk, Kellu, Natik, Nouu, Plak, Propicheck, Reneé, Ruklo, Rupestre, Sheltr, Streamdata, Yotta-i, Zaku.</p><h2>Ignite</h2><p>Acquora, entre otras. <a href=\"https://startupchile.org/blog/estas-son-las-startups-seleccionadas-para-big-10/\" target=\"_blank\" rel=\"noopener noreferrer\">Listado completo</a>.</p>",
+    "image": "assets/blog_img7.png",
+    "category": "Noticias",
+    "date": "2025-07-18",
+    "featured": false
+  }
+]
